@@ -6,12 +6,16 @@ class TimerWidget extends StatelessWidget {
   final int minutes;
   final int seconds;
   final bool isWorking;
+  final int percent;
+  final int minutesInSec;
 
   const TimerWidget({
     super.key,
     required this.minutes,
     required this.seconds,
     required this.isWorking,
+    required this.percent,
+    required this.minutesInSec,
   });
 
   @override
@@ -21,7 +25,7 @@ class TimerWidget extends StatelessWidget {
       child: CircularPercentIndicator(
         radius: 150,
         lineWidth: 8,
-        percent: 0.5,
+        percent: percent == minutesInSec ? 0 : percent / minutesInSec,
         animation: true,
         progressColor:
             isWorking ? const Color.fromRGBO(192, 34, 67, 1) : Colors.green,

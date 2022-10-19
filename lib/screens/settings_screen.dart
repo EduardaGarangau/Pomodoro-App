@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pomodoro_app/widgets/settings/save_button.dart';
-import 'package:pomodoro_app/widgets/settings/sections_field.dart';
 import 'package:pomodoro_app/widgets/settings/settings_field.dart';
 import 'package:pomodoro_app/widgets/settings/task_field.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +33,7 @@ class SettingsScreen extends StatelessWidget {
         builder: (context) {
           return Column(
             children: [
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               TaskField(setTask: store.setTask),
               const SizedBox(height: 15),
               SettingsField(
@@ -50,13 +49,7 @@ class SettingsScreen extends StatelessWidget {
                 increment: store.incrementBreakTime,
                 decrement: store.decrementBreakTime,
               ),
-              const SizedBox(height: 15),
-              SectionField(
-                sections: store.sections,
-                increment: store.incrementSections,
-                decrement: store.decrementSections,
-              ),
-              const SizedBox(height: 70),
+              const SizedBox(height: 50),
               const SaveButton(),
             ],
           );

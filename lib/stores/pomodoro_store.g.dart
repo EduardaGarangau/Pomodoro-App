@@ -9,6 +9,54 @@ part of 'pomodoro_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$PomodoroStore on _PomodoroStoreBase, Store {
+  late final _$timerStartedAtom =
+      Atom(name: '_PomodoroStoreBase.timerStarted', context: context);
+
+  @override
+  bool get timerStarted {
+    _$timerStartedAtom.reportRead();
+    return super.timerStarted;
+  }
+
+  @override
+  set timerStarted(bool value) {
+    _$timerStartedAtom.reportWrite(value, super.timerStarted, () {
+      super.timerStarted = value;
+    });
+  }
+
+  late final _$minutesInSecAtom =
+      Atom(name: '_PomodoroStoreBase.minutesInSec', context: context);
+
+  @override
+  int get minutesInSec {
+    _$minutesInSecAtom.reportRead();
+    return super.minutesInSec;
+  }
+
+  @override
+  set minutesInSec(int value) {
+    _$minutesInSecAtom.reportWrite(value, super.minutesInSec, () {
+      super.minutesInSec = value;
+    });
+  }
+
+  late final _$percentAtom =
+      Atom(name: '_PomodoroStoreBase.percent', context: context);
+
+  @override
+  int get percent {
+    _$percentAtom.reportRead();
+    return super.percent;
+  }
+
+  @override
+  set percent(int value) {
+    _$percentAtom.reportWrite(value, super.percent, () {
+      super.percent = value;
+    });
+  }
+
   late final _$workTimeAtom =
       Atom(name: '_PomodoroStoreBase.workTime', context: context);
 
@@ -70,22 +118,6 @@ mixin _$PomodoroStore on _PomodoroStoreBase, Store {
   set seconds(int value) {
     _$secondsAtom.reportWrite(value, super.seconds, () {
       super.seconds = value;
-    });
-  }
-
-  late final _$sectionsAtom =
-      Atom(name: '_PomodoroStoreBase.sections', context: context);
-
-  @override
-  int get sections {
-    _$sectionsAtom.reportRead();
-    return super.sections;
-  }
-
-  @override
-  set sections(int value) {
-    _$sectionsAtom.reportWrite(value, super.sections, () {
-      super.sections = value;
     });
   }
 
@@ -169,28 +201,6 @@ mixin _$PomodoroStore on _PomodoroStoreBase, Store {
   }
 
   @override
-  void incrementSections() {
-    final _$actionInfo = _$_PomodoroStoreBaseActionController.startAction(
-        name: '_PomodoroStoreBase.incrementSections');
-    try {
-      return super.incrementSections();
-    } finally {
-      _$_PomodoroStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void decrementSections() {
-    final _$actionInfo = _$_PomodoroStoreBaseActionController.startAction(
-        name: '_PomodoroStoreBase.decrementSections');
-    try {
-      return super.decrementSections();
-    } finally {
-      _$_PomodoroStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void setTask(String value) {
     final _$actionInfo = _$_PomodoroStoreBaseActionController.startAction(
         name: '_PomodoroStoreBase.setTask');
@@ -202,13 +212,48 @@ mixin _$PomodoroStore on _PomodoroStoreBase, Store {
   }
 
   @override
+  void startTimer() {
+    final _$actionInfo = _$_PomodoroStoreBaseActionController.startAction(
+        name: '_PomodoroStoreBase.startTimer');
+    try {
+      return super.startTimer();
+    } finally {
+      _$_PomodoroStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void stopTimer() {
+    final _$actionInfo = _$_PomodoroStoreBaseActionController.startAction(
+        name: '_PomodoroStoreBase.stopTimer');
+    try {
+      return super.stopTimer();
+    } finally {
+      _$_PomodoroStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void restartTimer() {
+    final _$actionInfo = _$_PomodoroStoreBaseActionController.startAction(
+        name: '_PomodoroStoreBase.restartTimer');
+    try {
+      return super.restartTimer();
+    } finally {
+      _$_PomodoroStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
+timerStarted: ${timerStarted},
+minutesInSec: ${minutesInSec},
+percent: ${percent},
 workTime: ${workTime},
 breakTime: ${breakTime},
 minutes: ${minutes},
 seconds: ${seconds},
-sections: ${sections},
 task: ${task},
 timerType: ${timerType}
     ''';
